@@ -1,11 +1,19 @@
-# HTTP Response parser
+# Booking firefox extension
 
-## What it does
+## Install
 
-Listens to HTTP Responses from example.com and changes the body of the response as it comes through. So that the word "Example" on https://example.com becomes "WebExtension Example".
+1. Open firefox
+2. Visit page `about:debugging#/runtime/this-firefox`
+3. Click "Load Temporary Add-on..." and select the `manifest.json` file
 
-## What it shows
+## Usage
 
-How to use the response parser on bytes.
+After clicking some booking session, the selected booking session will be highlighted.
 
-Icon is from: https://www.iconfinder.com/icons/763339/draw_edit_editor_pen_pencil_tool_write_icon#size=128
+It will auto-click it at 8am.
+
+If click again the highlighted booking session, the click will take effect immediately.
+
+## Notes
+
+Try to add something to the cart, to pass any google recaptcha challenge, to avoid the recaptcha challenge showing up when auto-click at 8am!
