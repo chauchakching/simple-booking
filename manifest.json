@@ -1,13 +1,13 @@
 {
-  "description": "Booking",
+  "description": "To assist booking auto click. See github readme.",
   "manifest_version": 2,
-  "name": "booking",
-  "version": "1.0",
+  "name": "booking auto click",
+  "version": "1.1",
   "browser_action": {
     "default_title": "Booking",
     "default_popup": "popup/popup.html"
   },
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/http-response",
+  "homepage_url": "https://github.com/chauchakching/simple-booking",
   "icons": {
     "48": "pen.svg"
   },
