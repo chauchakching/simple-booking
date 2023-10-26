@@ -16,6 +16,21 @@
       When selected timeslot is clicked again, the click will be triggered
       immediately.
     </p>
+    <div>
+      <span>Click time</span>
+      <div>
+        <input type="radio" name="countdown_type" value="time" />
+        <input type="time" name="time" />
+      </div>
+      <div>
+        <input type="radio" name="countdown_type" value="fixed" />
+        <input
+          type="text"
+          name="second"
+          style="width: 30px; margin-right: 2px"
+        />s
+      </div>
+    </div>
     <p>
       <label>
         <input type="checkbox" id="checkbox_aggressive_pre_click" />
