@@ -39,9 +39,37 @@ const checkAllAncestors = (event, check, cb) => {
     if (check(target)) {
       return cb(target);
     }
+    if (!target.parentNode) return;
     target = target.parentNode;
   }
 };
+
+function setPreciseTimeout(callback, delay, refreshInterval = 1 * 1000) {
+  const start = performance.now();
+  let timeoutRef = null;
+  let rafRef = null;
+
+  const tick = () => {
+      const elapsed = performance.now() - start;
+      if (elapsed >= delay) {
+          callback();
+      } else if (delay - elapsed > refreshInterval) {
+          // If more than a minute remains
+          timeoutRef = setTimeout(() => {
+              rafRef = requestAnimationFrame(tick);
+          }, refreshInterval); // Check again in one minute
+      } else {
+          rafRef = requestAnimationFrame(tick);
+      }
+  };
+
+  rafRef = requestAnimationFrame(tick);
+
+  return () => {
+      cancelAnimationFrame(rafRef);
+      clearTimeout(timeoutRef);
+  };
+}
 
 console.log(browser.storage);
 
@@ -58,7 +86,7 @@ document.body.addEventListener(
 
     checkAllAncestors(
       event,
-      (target) => target.classList.contains("bookingBlock"),
+      (target) => target?.classList?.contains("bookingBlock"),
       // (target) => true,
       async (target) => {
         try {
@@ -97,7 +125,7 @@ document.body.addEventListener(
               : new Date(getTriggerTime()).valueOf(),
           });
 
-          delayedClickTimer = setTimeout(() => {
+          delayedClickTimer = setPreciseTimeout(() => {
             console.log("setTimeout trigger click!", new Date());
             context.enableClickInterceptor = false;
             event.target.click();
